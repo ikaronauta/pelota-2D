@@ -192,32 +192,32 @@ function optionsMovile() {
 
   document.querySelector('body').appendChild(controlersContainer);
 
-  izquierda.addEventListener("touchstart", function(){
-    preventDefault();
+  izquierda.addEventListener("touchstart", function(e){
+    e.preventDefault();
     leftPressed = true;
     rightPressed = false;
 
     izquierda.classList.add('active');
   });
 
-  izquierda.addEventListener("touchend", function(){
-    preventDefault();
+  izquierda.addEventListener("touchend", function(e){
+    e.preventDefault();
     leftPressed = false;
     rightPressed = false;
 
     izquierda.classList.remove('active');
   });
 
-  derecha.addEventListener("touchstart", function(){
-    preventDefault();
+  derecha.addEventListener("touchstart", function(e){
+    e.preventDefault();
     rightPressed = true;
     leftPressed = false;
 
     derecha.classList.add('active');
   });
 
-  derecha.addEventListener("touchend", function(){
-    preventDefault();
+  derecha.addEventListener("touchend", function(e){
+    e.preventDefault();
     rightPressed = false;
     leftPressed = false;
 
