@@ -5,12 +5,12 @@
 
 @font-face {
     font-family: 'arcade';
-    src: url(/assets/fuentes/arcade.TTF) format('truetype');
+    src: url(assets/fuentes/arcade.TTF) format('truetype');
     font-display: swap;
 }
 
 body {
-    background-image: url('/assets/images/fondo.jpg'); /* Reemplaza 'ruta_de_tu_imagen.jpg' con la ruta de tu imagen */
+    background-image: url('assets/images/fondo.jpg'); /* Reemplaza 'ruta_de_tu_imagen.jpg' con la ruta de tu imagen */
     background-size: cover; /* Esto hace que la imagen de fondo cubra todo el área del body */
     background-position: center; /* Esto centra la imagen de fondo */
 }
