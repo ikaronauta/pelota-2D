@@ -193,6 +193,7 @@ function optionsMovile() {
   document.querySelector('body').appendChild(controlersContainer);
 
   izquierda.addEventListener("touchstart", function(){
+    preventDefault();
     leftPressed = true;
     rightPressed = false;
 
@@ -200,6 +201,7 @@ function optionsMovile() {
   });
 
   izquierda.addEventListener("touchend", function(){
+    preventDefault();
     leftPressed = false;
     rightPressed = false;
 
@@ -207,6 +209,7 @@ function optionsMovile() {
   });
 
   derecha.addEventListener("touchstart", function(){
+    preventDefault();
     rightPressed = true;
     leftPressed = false;
 
@@ -214,6 +217,7 @@ function optionsMovile() {
   });
 
   derecha.addEventListener("touchend", function(){
+    preventDefault();
     rightPressed = false;
     leftPressed = false;
 
