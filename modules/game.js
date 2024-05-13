@@ -38,6 +38,8 @@ function collisionDetection() {
           if (score == brickRowCount * brickColumnCount) {
             //alert("YOU WIN, CONGRATULATIONS!");
             //document.location.reload();
+            clearInterval(mainTimeOut);
+            mensajeFinal('You Win!!!');
           }
         }
       }
