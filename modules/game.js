@@ -39,7 +39,7 @@ function collisionDetection() {
             //alert("YOU WIN, CONGRATULATIONS!");
             //document.location.reload();
             clearInterval(mainTimeOut);
-            mensajeFinal('You Win!!!');
+            mensajeFinal('You Win!');
           }
         }
       }
@@ -62,7 +62,7 @@ function drawLives() {
 function drawBall() {
   ctx.beginPath();
   ctx.arc(x, y, ballRadius, 0, Math.PI * 2);
-  ctx.fillStyle = "#B0B0B0";
+  ctx.fillStyle = "#FF9800";
   ctx.fill();
   ctx.closePath();
 }
@@ -142,15 +142,25 @@ function draw() {
   x += dx;
   y += dy;
 
-  //requestAnimationFrame(draw);
 }
 
 function mensajeFinal(mensaje) {
   let container = document.createElement('div');
-
   container.className = 'container-final';
-  container.innerHTML = mensaje;
 
+  let p = document.createElement('p');
+  p.innerHTML = mensaje;
+
+  let play = document.createElement('img');
+  play.className = 'play-game';
+  play.src = 'assets/images/play.svg';
+  
+  play.addEventListener('click', function(){
+    restart(this.parentElement);
+  });
+
+  container.appendChild(p);
+  container.appendChild(play);
 
   document.querySelector('body').appendChild(container);
 

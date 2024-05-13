@@ -34,16 +34,21 @@ for (c = 0; c < brickColumnCount; c++) {
 var backgroundImage = new Image();
 backgroundImage.src = 'assets/images/space.jpg';
 
-function inicio() {
-  draw();
-
+backgroundImage.onload = function () {
   if (esSmartphone) optionsMovile();
   else optionsPC();
+
+  start();
+};
+
+function start(){
+  mainTimeOut = setInterval(draw, 10);
 }
 
-backgroundImage.onload = function () {
-  //cancelAnimationFrame();
-  inicio();
-  //draw();
-  mainTimeOut = setInterval(draw, 10);
-};
+function stop(){
+  clearInterval(mainTimeOut);
+}
+
+function restart(divMensaje){
+  document.location.reload();
+} 
