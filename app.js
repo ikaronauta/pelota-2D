@@ -32,7 +32,7 @@ for (c = 0; c < brickColumnCount; c++) {
 }
 
 var backgroundImage = new Image();
-backgroundImage.src = '/assets/images/space.jpg';
+backgroundImage.src = 'assets/images/space.jpg';
 
 function inicio() {
   draw();

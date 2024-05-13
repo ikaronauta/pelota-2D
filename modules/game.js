@@ -168,11 +168,11 @@ function optionsMovile() {
   controlersContainer.className = 'controlers-container';
 
   let izquierda = document.createElement('img');
-  izquierda.src = '/assets/images/izquierda.svg';
+  izquierda.src = 'assets/images/izquierda.svg';
   izquierda.className = 'control';
 
   let derecha = document.createElement('img');
-  derecha.src = '/assets/images/derecha.svg';
+  derecha.src = 'assets/images/derecha.svg';
   derecha.className = 'control';
   
   controlersContainer.appendChild(izquierda);
