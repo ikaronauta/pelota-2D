@@ -96,18 +96,18 @@ html, body {
 
 .enlace {
     position: absolute;
-    
-    color: #000000;
     font-family: arcade1;
     text-decoration: none;
 }
 
 .pc {
+    color: #000000;
     bottom: 10%;
     font-size: 3rem;
 }
 
 .movile {
+    color: white;
     top: 10%;
     font-size: 2rem;
 }
