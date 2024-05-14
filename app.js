@@ -39,6 +39,7 @@ backgroundImage.onload = function () {
   else optionsPC();
 
   start();
+  textoEnlace();
 };
 
 function start(){

@@ -175,6 +175,16 @@ function optionsPC() {
   document.addEventListener("mousemove", mouseMoveHandler, false);
 }
 
+function textoEnlace(){
+  let enlace = document.createElement('a');
+  enlace.className = esSmartphone ? 'enlace movile' : 'enlace pc';
+  enlace.innerHTML = 'www.julianandresortiz.com';
+  enlace.href = 'https://julianandresortiz.com/';
+  enlace.target = '_blank';
+
+  document.querySelector('body').appendChild(enlace);
+}
+
 function optionsMovile() {
   let controlersContainer = document.createElement('div');
   controlersContainer.className = 'controlers-container';

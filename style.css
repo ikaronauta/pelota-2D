@@ -9,6 +9,12 @@
     font-display: swap;
 }
 
+@font-face {
+    font-family: 'arcade1';
+    src: url(assets/fuentes/arcade1.TTF) format('truetype');
+    font-display: swap;
+}
+
 body {
     background-image: url('assets/images/fondo.jpg'); /* Reemplaza 'ruta_de_tu_imagen.jpg' con la ruta de tu imagen */
     background-size: cover; /* Esto hace que la imagen de fondo cubra todo el área del body */
@@ -86,4 +92,22 @@ html, body {
     height: auto;
     margin-top: 1rem;
     cursor: pointer;
+}
+
+.enlace {
+    position: absolute;
+    
+    color: #000000;
+    font-family: arcade1;
+    text-decoration: none;
+}
+
+.pc {
+    bottom: 10%;
+    font-size: 3rem;
+}
+
+.movile {
+    top: 10%;
+    font-size: 2rem;
 }
