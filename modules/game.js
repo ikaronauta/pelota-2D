@@ -25,7 +25,7 @@ function collisionDetection() {
   for (c = 0; c < brickColumnCount; c++) {
     for (r = 0; r < brickRowCount; r++) {
       var b = bricks[c][r];
-      if (b.status == 1) {
+      if (b.status > 0) {
         if (
           x > b.x &&
           x < b.x + brickWidth &&
@@ -33,13 +33,16 @@ function collisionDetection() {
           y < b.y + brickHeight
         ) {
           dy = -dy;
-          b.status = 0;
+          b.status--;
           score++;
-          if (score == brickRowCount * brickColumnCount) {
+          data.score = score;
+          if (allBricksBreacked()) {
             //alert("YOU WIN, CONGRATULATIONS!");
             //document.location.reload();
             clearInterval(mainTimeOut);
-            mensajeFinal('You Win!');
+            alertFullScrean('You Win', 'rgb(72, 159, 170)', play());
+            data.stage++;
+            localStorage.setItem('pelota2D', JSON.stringify(data));
           }
         }
       }
@@ -50,7 +53,7 @@ function collisionDetection() {
 function drawScore() {
   ctx.font = "16px arcade";
   ctx.fillStyle = "#fff";
-  ctx.fillText("Score: " + score, 8, 20);
+  ctx.fillText("Score: " + data.score, 8, 20);
 }
 
 function drawLives() {
@@ -78,18 +81,18 @@ function drawPaddle() {
 function drawBricks() {
   for (c = 0; c < brickColumnCount; c++) {
     for (r = 0; r < brickRowCount; r++) {
-      if (bricks[c][r].status == 1) {
+      if (bricks[c][r].status > 0) {
         var brickX = c * (brickWidth + brickPadding) + brickOffsetLeft;
         var brickY = r * (brickHeight + brickPadding) + brickOffsetTop;
         bricks[c][r].x = brickX;
         bricks[c][r].y = brickY;
         ctx.beginPath();
         ctx.rect(brickX, brickY, brickWidth, brickHeight);
-        ctx.fillStyle = "#8B4513";
+        ctx.fillStyle = `#8B4513${brickScalaColor[bricks[c][r].status]}`;
         ctx.fill();
-        ctx.lineWidth = 0.5; // Ancho del borde
-        ctx.strokeStyle = "#fff"; // Color del borde (negro)
-        ctx.stroke(); // Dibujar el borde
+        ctx.lineWidth = 0.5; 
+        ctx.strokeStyle = "#fff"; 
+        ctx.stroke();
         ctx.closePath();
       }
     }
@@ -122,11 +125,18 @@ function draw() {
         //alert("GAME OVER");
         clearInterval(mainTimeOut);
         //document.location.reload();
-        mensajeFinal('Game Over');
+        alertFullScrean('Game Over', 'rgb(170, 72, 72)', play());
+        data.stage = 1;
+        data.score = 0;
+        localStorage.setItem('pelota2D', JSON.stringify(data));
       } else {
+
+        stop();
+        alertFullScrean(messages[Math.floor(Math.random() * messages.length -1)], 'silver', timer());
+
         x = canvas.width / 2;
         y = canvas.height - 30;
-        dx = 2;
+        dx = numAle % 2 == 0 ? 2.2 : -2.2;
         dy = -2;
         paddleX = (canvas.width - paddleWidth) / 2;
       }
@@ -144,23 +154,18 @@ function draw() {
 
 }
 
-function mensajeFinal(mensaje) {
+function alertFullScrean(mensaje, color, button) {
   let container = document.createElement('div');
+  container.id = 'alertFullScrean';
   container.className = 'container-final';
+  container.style.backgroundColor = color;
 
   let p = document.createElement('p');
   p.innerHTML = mensaje;
-
-  let play = document.createElement('img');
-  play.className = 'play-game';
-  play.src = 'assets/images/play.svg';
-  
-  play.addEventListener('click', function(){
-    restart(this.parentElement);
-  });
+  p.style.fontSize = esSmartphone ? '2.5rem' : '5rem';
 
   container.appendChild(p);
-  container.appendChild(play);
+  container.appendChild(button);
 
   document.querySelector('body').appendChild(container);
 

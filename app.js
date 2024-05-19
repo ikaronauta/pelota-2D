@@ -1,49 +1,61 @@
-const esSmartphone = window.matchMedia("(max-width: 900px)").matches;
-
-var canvas = document.getElementById("myCanvas");
-var ctx = canvas.getContext("2d");
-var ballRadius = 10;
-var x = canvas.width / 2;
-var y = canvas.height - 30;
-var dx = 2;
-var dy = -2;
-var paddleHeight = 10;
-var paddleWidth = 75;
-var paddleX = (canvas.width - paddleWidth) / 2;
-var rightPressed = false;
-var leftPressed = false;
-var brickRowCount = 3;
-var brickColumnCount = 5;
-var brickWidth = 75;
-var brickHeight = 20;
-var brickPadding = 10;
-var brickOffsetTop = 30;
-var brickOffsetLeft = 30;
-var score = 0;
-var mainTimeOut;
-var lives = 3;
-
-var bricks = [];
-for (c = 0; c < brickColumnCount; c++) {
-  bricks[c] = [];
-  for (r = 0; r < brickRowCount; r++) {
-    bricks[c][r] = { x: 0, y: 0, status: 1 };
-  }
+const objBackgroundStages = {
+  1: '/assets/images/stage1.jpg',
+  2: '/assets/images/stage2.jpg',
+  3: '/assets/images/stage3.jpg',
+  4: '/assets/images/stage4.jpg',
+  5: '/assets/images/stage5.jpg',
+  6: '/assets/images/stage6.jpg',
+  7: '/assets/images/stage7.jpg',
+  8: '/assets/images/stage8.jpg',
 }
 
+const messages = [
+  "Try again!",
+  "You can!",
+  "Keep going!",
+  "Don't worry!",
+  "Almost there!",
+  "Stay strong!",
+  "Next time!",
+  "Keep trying!",
+  "Don't stop!",
+  "Keep pushing!",
+  "Stay focused!",
+  "Believe yourself!",
+  "One more!",
+  "Bounce back!",
+  "Be persistent!",
+  "Stay calm!",
+  "You got this!",
+  "Never quit!",
+  "Stay positive!",
+  "Push forward!"
+];
+
 var backgroundImage = new Image();
-backgroundImage.src = 'assets/images/space.jpg';
+backgroundImage.src = objBackgroundStages.hasOwnProperty(data.stage) ? 
+                      objBackgroundStages[data.stage] :
+                      objBackgroundStages[0];
 
 backgroundImage.onload = function () {
   if (esSmartphone) optionsMovile();
   else optionsPC();
 
-  start();
+  if(stagesRules.hasOwnProperty(data.stage)){
+    stagesRules[data.stage].forEach(function(rule){
+      eval(rule);
+    });
+  }
+  
   textoEnlace();
+  alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
+  ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+  
 };
 
 function start(){
-  mainTimeOut = setInterval(draw, 10);
+  mainTimeOut = setInterval(draw, 11 - data.stage);
 }
 
 function stop(){
@@ -53,3 +65,59 @@ function stop(){
 function restart(divMensaje){
   document.location.reload();
 } 
+
+function play(){
+  let play = document.createElement('img');
+  play.className = 'play-game';
+  play.src = 'assets/images/play.svg';
+  play.tabIndex = 0;
+  
+  play.addEventListener('click', function(){
+    restart(this.parentElement);
+  });
+
+  document.addEventListener('keypress', function(event) {
+    if (event.key === 'Enter') {
+      play.click();
+    }
+});
+
+  return play;
+}
+
+function timer(){
+  let count = 3;
+  containerTimer = document.createElement('p');
+  containerTimer.id = 'timer';
+  containerTimer.textContent = count;
+  containerTimer.style.fontFamily = 'arcade';
+  
+  timerInit = setInterval(() => {
+    count--;
+
+    if(count == 0) {
+      containerTimer.textContent = 'GO !!!'
+      clearInterval(timerInit);
+      document.getElementById('alertFullScrean').remove();
+
+      start();
+      return;
+    }
+
+    containerTimer.textContent = count;
+  }, 1000);
+
+  return containerTimer;
+}
+
+function allBricksBreacked(){
+  let countBricksNoBreacked = 0;
+
+  bricks.forEach(function(row){
+    row.forEach(function(brick){
+      if(brick.status > 0) countBricksNoBreacked++;
+    });
+  });
+
+  return countBricksNoBreacked == 0 ? true : false;
+}
