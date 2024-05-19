@@ -12,8 +12,8 @@ var paddleWidth = 75;
 var paddleX = (canvas.width - paddleWidth) / 2;
 var rightPressed = false;
 var leftPressed = false;
-var brickRowCount = 0;
-var brickColumnCount = 0;
+var brickRowCount = 2;
+var brickColumnCount = 5;
 var brickWidth = 75;
 var brickHeight = 20;
 var brickPadding = 10;
@@ -62,8 +62,12 @@ const stagesFiles = {
   4: [4,5],
 }
 
-if (localStorage.getItem('pelota2D')) data = JSON.parse(localStorage.getItem('pelota2D'));
-else localStorage.setItem('pelota2D', JSON.stringify(data));
+if (localStorage.getItem('pelota2D')) {
+  data = JSON.parse(localStorage.getItem('pelota2D'));
+  score = data.score;
+} else {
+  localStorage.setItem('pelota2D', JSON.stringify(data));
+}
 
 if(stagesFiles.hasOwnProperty(data.stage)){
   brickRowCount = stagesFiles[data.stage][0];
