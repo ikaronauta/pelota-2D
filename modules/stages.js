@@ -21,7 +21,7 @@ var brickOffsetTop = 30;
 var brickOffsetLeft = 30;
 var score = 0;
 var mainTimeOut, timerInit;
-var lives = 3;
+var lives = 5;
 var containerTimer;
 var data = {"stage": 1, "score": 0};
 var numAle = Math.floor(Math.random() * 10);
