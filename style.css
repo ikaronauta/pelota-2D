@@ -19,11 +19,12 @@ body {
     background-image: url('assets/images/fondo.jpg'); /* Reemplaza 'ruta_de_tu_imagen.jpg' con la ruta de tu imagen */
     background-size: cover; /* Esto hace que la imagen de fondo cubra todo el área del body */
     background-position: center; /* Esto centra la imagen de fondo */
+    user-select: none;
 }
 
 canvas {
-    background: #eee;
-    display: block;
+    display: none;
+    background: #eee; 
     margin: 0 auto;
     border: 1px solid gray;
     border-radius: 10px;
@@ -109,4 +110,33 @@ html, body {
     color: white;
     top: 10%;
     font-size: 2rem;
+}
+
+.user {
+    border-radius: 5px;
+    background-color: #ffc6fe;
+    border: 1px #ffc6fe solid;
+    padding: 0.5rem;
+    font-family: 'arcade1';
+}
+
+.user:focus {
+    background-color: #7e98c4;
+    color: #ffc6fe;
+}
+
+.bStart {
+    border-radius: 5px;
+    background-color: #7e98c4;
+    border: 1px #7e98c4 solid;
+    color: #ffc6fe;
+    padding: 0.5rem;
+    font-family: 'arcade1';
+    cursor: pointer;
+    margin-left: 0.1rem;
+}
+
+.bStart:hover {
+    background-color: #ffc6fe;
+    color: #7e98c4;
 }

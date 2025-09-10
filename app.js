@@ -10,27 +10,28 @@ const objBackgroundStages = {
 }
 
 const messages = [
-  "Try again!",
-  "You can!",
-  "Keep going!",
-  "Don't worry!",
-  "Almost there!",
-  "Stay strong!",
-  "Next time!",
-  "Keep trying!",
-  "Don't stop!",
-  "Keep pushing!",
-  "Stay focused!",
-  "Believe yourself!",
-  "One more!",
-  "Bounce back!",
-  "Be persistent!",
-  "Stay calm!",
-  "You got this!",
-  "Never quit!",
-  "Stay positive!",
-  "Push forward!"
+  "Try again! 🔄",
+  "You can! 💪",
+  "Keep going! 🏃‍♂️",
+  "Don't worry! 🙂",
+  "Almost there! ⏳",
+  "Stay strong! 🦾",
+  "Next time! 👉",
+  "Keep trying! 🎯",
+  "Don't stop! 🚫",
+  "Keep pushing! 📈",
+  "Stay focused! 🎯👀",
+  "Believe yourself! 🌟",
+  "One more! ➕",
+  "Bounce back! 🦘",
+  "Be persistent! 🔥",
+  "Stay calm! 🧘",
+  "You got this! ✅",
+  "Never quit! 🚀",
+  "Stay positive! ☀️",
+  "Push forward! ⬆️"
 ];
+
 
 var backgroundImage = new Image();
 backgroundImage.src = objBackgroundStages.hasOwnProperty(data.stage) ? 
@@ -40,18 +41,14 @@ backgroundImage.src = objBackgroundStages.hasOwnProperty(data.stage) ?
 backgroundImage.onload = function () {
   if (esSmartphone) optionsMovile();
   else optionsPC();
-
+  
   if(stagesRules.hasOwnProperty(data.stage)){
     stagesRules[data.stage].forEach(function(rule){
       eval(rule);
     });
   }
   
-  textoEnlace();
-  alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
-  ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-
-  
+  init();
 };
 
 function start(){
@@ -66,10 +63,10 @@ function restart(divMensaje){
   document.location.reload();
 } 
 
-function play(){
+function play(rutaImaen){
   let play = document.createElement('img');
   play.className = 'play-game';
-  play.src = 'assets/images/play.svg';
+  play.src = rutaImaen;
   play.tabIndex = 0;
   
   play.addEventListener('click', function(){

@@ -23,7 +23,7 @@ var score = 0;
 var mainTimeOut, timerInit;
 var lives = 5;
 var containerTimer;
-var data = {"stage": 1, "score": 0};
+var data = {"stage": 1, "score": 0, "user": "default"};
 var numAle = Math.floor(Math.random() * 10);
 var brickScalaColor = {
   3: '',
