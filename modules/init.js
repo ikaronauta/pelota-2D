@@ -4,6 +4,10 @@ function init() {
   if (localStorage.getItem(`pelota2D-${mounthDay}`) &&
     (JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).stage > 1 ||
       JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).user != 'default')) {
+
+    if (esSmartphone) optionsMovile();
+    else optionsPC();
+    
     alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
