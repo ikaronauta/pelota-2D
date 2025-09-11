@@ -1,9 +1,9 @@
 const mounthDay = `${new Date().getMonth()}${new Date().getDate()}`;
 
 function init() {
-  if (localStorage.getItem(`pelota2D-${mounthDay}`) && 
-      (JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).stage > 1 || 
-        JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).user != 'default')) {
+  if (localStorage.getItem(`pelota2D-${mounthDay}`) &&
+    (JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).stage > 1 ||
+      JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).user != 'default')) {
     alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
@@ -25,6 +25,9 @@ function init() {
   start.textContent = 'Start';
   start.id = 'bStart';
   start.addEventListener('click', function () {
+
+    if (esSmartphone) optionsMovile();
+    else optionsPC();
 
     if (document.getElementById('user').value == '')
       return alertFullScrean('⚠️ Username is empty !!!', 'rgb(192, 134, 47, 1)', play('assets/images/back.png'));

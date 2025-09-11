@@ -37,10 +37,7 @@ backgroundImage.src = objBackgroundStages.hasOwnProperty(data.stage) ?
                       objBackgroundStages[data.stage] :
                       objBackgroundStages[0];
 
-backgroundImage.onload = function () {
-  if (esSmartphone) optionsMovile();
-  else optionsPC();
-  
+backgroundImage.onload = function () {  
   if(stagesRules.hasOwnProperty(data.stage)){
     stagesRules[data.stage].forEach(function(rule){
       eval(rule);
