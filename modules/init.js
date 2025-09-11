@@ -1,7 +1,9 @@
+const mounthDay = `${new Date().getMonth()}${new Date().getDate()}`;
+
 function init() {
-  if (localStorage.getItem('pelota2D') && 
-      (JSON.parse(localStorage.getItem('pelota2D')).stage > 1 || 
-        JSON.parse(localStorage.getItem('pelota2D')).stage != 'default')) {
+  if (localStorage.getItem(`pelota2D-${mounthDay}`) && 
+      (JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).stage > 1 || 
+        JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).user != 'default')) {
     alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
     ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
@@ -36,10 +38,10 @@ function init() {
 
     textoEnlace();
 
-    data = JSON.parse(localStorage.getItem('pelota2D'))
+    data = JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`))
     data.user = document.getElementById('user').value;
 
-    localStorage.setItem('pelota2D', JSON.stringify(data));
+    localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
   });
 
   document.querySelector('body').appendChild(input);

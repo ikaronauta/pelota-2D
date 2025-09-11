@@ -62,11 +62,11 @@ const stagesFiles = {
   4: [4,5],
 }
 
-if (localStorage.getItem('pelota2D')) {
-  data = JSON.parse(localStorage.getItem('pelota2D'));
+if (localStorage.getItem(`pelota2D-${mounthDay}`)) {
+  data = JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`));
   score = data.score;
 } else {
-  localStorage.setItem('pelota2D', JSON.stringify(data));
+  localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
 }
 
 if(stagesFiles.hasOwnProperty(data.stage)){

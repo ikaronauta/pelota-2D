@@ -32,7 +32,6 @@ const messages = [
   "Push forward! ⬆️"
 ];
 
-
 var backgroundImage = new Image();
 backgroundImage.src = objBackgroundStages.hasOwnProperty(data.stage) ? 
                       objBackgroundStages[data.stage] :
