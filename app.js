@@ -55,7 +55,7 @@ function stop(){
   clearInterval(mainTimeOut);
 }
 
-function restart(divMensaje){
+function restart(){
   document.location.reload();
 } 
 

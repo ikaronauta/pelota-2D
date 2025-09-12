@@ -20,8 +20,9 @@ function init() {
         ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
 
         document.getElementById('myCanvas').style.display = 'block';
-        textoEnlace();
-        return;
+        document.querySelector('body').appendChild(gameControl());
+        
+        return textoEnlace();
       }
     } else {
       // Usuario no logueado o se cerró la sesión
@@ -176,4 +177,53 @@ function showCreateUser() {
   containerSingUp.appendChild(singUp);
 
   return containerSingUp;
+}
+
+function gameControl () {
+
+  let buttonPlay = document.createElement('img');
+
+  buttonPlay.id = 'buttonPlay';
+  buttonPlay.classList = 'buttonPlay';
+  buttonPlay.alt = 'Play';
+  buttonPlay.src = 'assets/images/play.png';
+
+  buttonPlay.addEventListener('click', function(){
+    start();
+  });
+
+  let buttonPause = document.createElement('img');
+
+  buttonPause.id = 'buttonPause';
+  buttonPause.classList = 'buttonPause';
+  buttonPause.alt = 'Pause';
+  buttonPause.src = 'assets/images/pause.png';
+
+  buttonPause.addEventListener('click', function(){
+    stop();
+  });
+
+  let buttonLogOut = document.createElement('img');
+
+  buttonLogOut.id = 'buttonLogOut';
+  buttonLogOut.classList = 'buttonLogOut';
+  buttonLogOut.alt = 'LogOut';
+  buttonLogOut.src = 'assets/images/off.png';
+
+  buttonLogOut.addEventListener('click', function() {
+    document.getElementById('containerLogin').style.display = 'none';
+    document.getElementById('myCanvas').style.display = 'none';
+    logoutUser();
+    restart();
+  })
+
+  let containerControl = document.createElement('div');
+
+  containerControl.classList = 'containerControl';
+
+  containerControl.appendChild(buttonPlay);
+  containerControl.appendChild(buttonPause);
+  containerControl.appendChild(buttonLogOut);
+
+  return containerControl;
 }
