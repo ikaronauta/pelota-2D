@@ -6,9 +6,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="author" content="Julian Andres Ortiz">
-    <meta name="description" 
+    <meta name="description"
         content="🥎 ¡Clásico juego de pelota desarrollado por Julian Andres Ortiz!. ¡Desafía tus límites y alcanza la puntuación más alta en este adictivo juego de arcade!">
-    <meta name="keywords" content="juego de pelota, juego arcade, pelota rebote, ladrillos, paleta, habilidad, diversión, entretenimiento, desafío, puntaje alto, habilidades motoras, coordinación, destreza, entretenimiento en línea, juego adictivo, rompecabezas, juego casual">
+    <meta name="keywords"
+        content="juego de pelota, juego arcade, pelota rebote, ladrillos, paleta, habilidad, diversión, entretenimiento, desafío, puntaje alto, habilidades motoras, coordinación, destreza, entretenimiento en línea, juego adictivo, rompecabezas, juego casual">
     <meta name="robots" content="index, follow">
 
     <!-- Estilos -->
@@ -21,10 +22,17 @@
 
 <body>
     <canvas id="myCanvas" width="480" height="320"></canvas>
+
+    <!-- Firebase SDK (siempre necesario) -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-app-compat.js"></script>
+    <!-- Firebase Authentication SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.12.3/firebase-auth-compat.js"></script>
+    <script src="./firebase/config.js"></script>
     <script src="modules/init.js"></script>
     <script src="modules/stages.js"></script>
     <script src="modules/game.js"></script>
     <script src="app.js"></script>
+
 </body>
 
 </html>

@@ -1,56 +1,179 @@
 const mounthDay = `${new Date().getMonth()}${new Date().getDate()}`;
 
 function init() {
-  if (localStorage.getItem(`pelota2D-${mounthDay}`) &&
-    (JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).stage > 1 ||
-      JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).user != 'default')) {
 
-    if (esSmartphone) optionsMovile();
-    else optionsPC();
-    
-    alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
-    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+  auth.onAuthStateChanged((user) => {
+    if (user) {
+      if (user) {
 
-    document.getElementById('myCanvas').style.display = 'block';
-    textoEnlace();
-    return;
-  }
+        if(document.getElementById('containerLogin'))
+          document.getElementById('containerLogin').style.display = 'none';
 
-  let input = document.createElement('input');
+        if(document.getElementById('containerSingUp'))
+          document.getElementById('containerSingUp').style.display = 'none';
+        
+        // ✅ Usuario autenticado en Firebase
+        if (esSmartphone) optionsMovile();
+        else optionsPC();
 
-  input.classList = 'user';
-  input.name = 'user';
-  input.id = 'user';
-  input.placeholder = 'Username';
+        alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
+        ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
+
+        document.getElementById('myCanvas').style.display = 'block';
+        textoEnlace();
+        return;
+      }
+    } else {
+      // Usuario no logueado o se cerró la sesión
+      console.log("No hay usuario logueado");
+
+      document.querySelector('body').appendChild(showlogin());
+
+      //textoEnlace();
+    }
+  });
+}
+
+function showlogin() {
+  let tittleLogin = document.createElement('h3');
+  tittleLogin.innerText = 'Login';
+
+  let inputEmail = document.createElement('input');
+
+  inputEmail.type = 'email';
+  inputEmail.classList = 'inputLogin';
+  inputEmail.name = 'email';
+  inputEmail.id = 'email';
+  inputEmail.placeholder = 'Email';
+
+  let inputPassword = document.createElement('input');
+
+  inputPassword.type = 'password';
+  inputPassword.classList = 'inputLogin';
+  inputPassword.name = 'password';
+  inputPassword.id = 'password';
+  inputPassword.placeholder = 'Password';
 
   let start = document.createElement('button');
 
-  start.classList = 'bStart';
+  start.classList = 'butonLogin';
   start.textContent = 'Start';
   start.id = 'bStart';
+
   start.addEventListener('click', function () {
 
-    if (esSmartphone) optionsMovile();
-    else optionsPC();
+    if (document.getElementById('email').value == '')
+      return alertFullScrean('⚠️ Email is empty !!!', 'rgb(192, 134, 47, 1)', play('assets/images/back.png'));
+    else if (document.getElementById('password').value == '')
+      return alertFullScrean('⚠️ Password is empty !!!', 'rgb(192, 134, 47, 1)', play('assets/images/back.png'));
 
-    if (document.getElementById('user').value == '')
-      return alertFullScrean('⚠️ Username is empty !!!', 'rgb(192, 134, 47, 1)', play('assets/images/back.png'));
-
-    alertFullScrean(`Stage ${data.stage}`, 'silver', timer());
-    ctx.drawImage(backgroundImage, 0, 0, canvas.width, canvas.height);
-
-    document.getElementById('user').style.display = 'none';
-    document.getElementById('bStart').style.display = 'none';
-    document.getElementById('myCanvas').style.display = 'block';
-
-    textoEnlace();
-
-    data = JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`))
-    data.user = document.getElementById('user').value;
-
-    localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
+    loginUser({
+        email: document.getElementById('email').value,
+        password: document.getElementById('password').value
+      })
+      .then(function(user) {
+        console.log(user);
+      })
+      .catch(function(error){
+        alertFullScrean(`💀 ${error.code} !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
+      });
   });
 
-  document.querySelector('body').appendChild(input);
-  document.querySelector('body').appendChild(start);
+  let singUp = document.createElement('button');
+
+  singUp.classList = 'butonLogin';
+  singUp.textContent = 'SingUp';
+  singUp.id = 'bSingUp';
+
+  singUp.addEventListener('click', function() {
+
+    document.getElementById('containerLogin').style.display = 'none';
+    document.querySelector('body').appendChild(showCreateUser());
+  });
+
+  let containerLogin = document.createElement('div');
+
+  containerLogin.classList = 'containerLogin';
+  containerLogin.id = 'containerLogin';
+
+  containerLogin.appendChild(tittleLogin);
+  containerLogin.appendChild(inputEmail);
+  containerLogin.appendChild(inputPassword);
+  containerLogin.appendChild(start);
+  containerLogin.appendChild(singUp);
+
+  return containerLogin;
+}
+
+function showCreateUser() { 
+  let tittleSingUp = document.createElement('h3');
+  tittleSingUp.innerText = 'SingUp';
+
+  let inputEmail = document.createElement('input');
+
+  inputEmail.type = 'email';
+  inputEmail.classList = 'inputSingUp';
+  inputEmail.name = 'email';
+  inputEmail.id = 'emailSingUp';
+  inputEmail.placeholder = 'Email';
+
+  let inputPassword1 = document.createElement('input');
+
+  inputPassword1.type = 'password';
+  inputPassword1.classList = 'inputSingUp';
+  inputPassword1.name = 'password1';
+  inputPassword1.id = 'password1';
+  inputPassword1.placeholder = 'Password';
+
+  let inputPassword2 = document.createElement('input');
+
+  inputPassword2.type = 'password';
+  inputPassword2.classList = 'inputSingUp';
+  inputPassword2.name = 'password2';
+  inputPassword2.id = 'password2';
+  inputPassword2.placeholder = 'Repeat Password';
+
+  let singUp = document.createElement('button');
+
+  singUp.classList = 'butonLogin';
+  singUp.textContent = 'SingUp';
+  singUp.id = 'bSingUp';
+
+  singUp.addEventListener('click', function() {
+
+    let emailSingUp = document.getElementById('emailSingUp').value;
+    let pass1 = document.getElementById('password1').value;
+    let pass2 = document.getElementById('password2').value;
+
+    if (emailSingUp == ''){
+      return alert('Sin Correo');
+    } else if(pass1 != pass2) {
+      return alert('Contraseñas diferentes');
+    } else {
+      createUser({
+        email: document.getElementById('emailSingUp').value,
+        password: document.getElementById('password1').value
+      })
+      .then(function(user) {
+        console.log(user);
+      })
+      .catch(function(error){
+        debugger;
+        alertFullScrean(`💀 ${error.code} !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
+      });
+    }
+  }); 
+
+  let containerSingUp = document.createElement('div');
+
+  containerSingUp.classList = 'containerSingUp';
+  containerSingUp.id = 'containerSingUp';
+
+  containerSingUp.appendChild(tittleSingUp);
+  containerSingUp.appendChild(inputEmail);
+  containerSingUp.appendChild(inputPassword1);
+  containerSingUp.appendChild(inputPassword2);
+  containerSingUp.appendChild(singUp);
+
+  return containerSingUp;
 }

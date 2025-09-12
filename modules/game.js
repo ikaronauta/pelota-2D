@@ -125,7 +125,7 @@ function draw() {
         //alert("GAME OVER");
         clearInterval(mainTimeOut);
         //document.location.reload();
-        alertFullScrean(`💀 Game Over ${JSON.parse(localStorage.getItem(`pelota2D-${mounthDay}`)).user} !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
+        alertFullScrean(`💀 Game Over !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
         data.stage = 1;
         data.score = 0;
         localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
@@ -165,7 +165,8 @@ function alertFullScrean(mensaje, color, button) {
   p.style.fontSize = esSmartphone ? '2.5rem' : '5rem';
 
   container.appendChild(p);
-  container.appendChild(button);
+  if(button)
+    container.appendChild(button);
 
   document.querySelector('body').appendChild(container);
 

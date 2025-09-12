@@ -112,31 +112,75 @@ html, body {
     font-size: 2rem;
 }
 
-.user {
+.containerLogin {
+    /* background-color: red; */
+    color: #ffc6fe;
+    font-family: 'arcade1';
+    border: 5px #ffc6fe solid;
+    border-radius: 10px;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputLogin {
     border-radius: 5px;
     background-color: #ffc6fe;
     border: 1px #ffc6fe solid;
     padding: 0.5rem;
     font-family: 'arcade1';
+    margin: 0.5rem 0;
 }
 
-.user:focus {
+.inputLogin:focus {
     background-color: #7e98c4;
     color: #ffc6fe;
 }
 
-.bStart {
+.butonLogin {
     border-radius: 5px;
     background-color: #7e98c4;
     border: 1px #7e98c4 solid;
-    color: #ffc6fe;
+    color: aliceblue;
     padding: 0.5rem;
-    font-family: 'arcade1';
     cursor: pointer;
     margin-left: 0.1rem;
+    width: 100%;
+    margin: 0.25rem 0;
+    font-family: 'arcade1';
+    font-size: 2rem;
 }
 
-.bStart:hover {
+.butonLogin:hover {
     background-color: #ffc6fe;
     color: #7e98c4;
+}
+
+.containerSingUp {
+    /* background-color: red; */
+    color: #ffc6fe;
+    font-family: 'arcade1';
+    border: 5px #ffc6fe solid;
+    border-radius: 10px;
+    padding: 1rem;
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.inputSingUp {
+    border-radius: 5px;
+    background-color: #ffc6fe;
+    border: 1px #ffc6fe solid;
+    padding: 0.5rem;
+    font-family: 'arcade1';
+    margin: 0.5rem 0;
+}
+
+.inputSingUp:focus {
+    background-color: #7e98c4;
+    color: #ffc6fe;
 }
