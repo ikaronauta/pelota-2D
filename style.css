@@ -211,10 +211,6 @@ body {
     cursor: pointer;
 }
 
-.containerControl:hover {
-    background-color: #7e98c4;
-}
-
 .prueba {
     color: wheat;
     position: absolute;
@@ -224,6 +220,13 @@ body {
     font-family: arcade1;
 }
 
+/* Hover solo en dispositivos con mouse */
+@media (hover: hover) and (pointer: fine) {
+  .containerControl:hover {
+    background-color: #7e98c4;
+  }
+}
+
 @media (max-width: 500px) {
     .containerControl {
         top: auto;
@@ -231,5 +234,9 @@ body {
         bottom: 20%;
         left: 50%;
         transform: translateX(-50%);
+    }
+
+    .containerControl:active {
+        background-color: #7e98c4;
     }
 }
