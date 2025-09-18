@@ -215,6 +215,15 @@ body {
     background-color: #7e98c4;
 }
 
+.prueba {
+    color: wheat;
+    position: absolute;
+    top: 10%;
+    margin: 0 auto;
+    font-size: 3rem;
+    font-family: arcade1;
+}
+
 @media (max-width: 500px) {
     .containerControl {
         top: auto;

@@ -48,6 +48,7 @@ backgroundImage.onload = function () {
 };
 
 function start(){
+  clearInterval(mainTimeOut);
   mainTimeOut = setInterval(draw, 11 - data.stage);
 }
 

@@ -184,6 +184,7 @@ function optionsPC() {
 function textoEnlace(){
   let enlace = document.createElement('a');
   enlace.className = esSmartphone ? 'enlace movile' : 'enlace pc';
+  enlace.id = 'enlace';
   enlace.innerHTML = 'www.julianandresortiz.com';
   enlace.href = 'https://julianandresortiz.com/';
   enlace.target = '_blank';
@@ -194,6 +195,7 @@ function textoEnlace(){
 function optionsMovile() {
   let controlersContainer = document.createElement('div');
   controlersContainer.className = 'controlers-container';
+  controlersContainer.id = 'controlers-container';
 
   let izquierda = document.createElement('img');
   izquierda.src = 'assets/images/izquierda.svg';

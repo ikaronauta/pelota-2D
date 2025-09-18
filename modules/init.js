@@ -1,17 +1,23 @@
 const mounthDay = `${new Date().getMonth()}${new Date().getDate()}`;
 
 function init() {
+  let prueba = document.createElement('div');
+  prueba.innerText = 'Cargando....';
+  prueba.classList = 'prueba';
+  prueba.id = 'prueba';
+  document.querySelector('body').appendChild(prueba);
 
   auth.onAuthStateChanged((user) => {
+    document.getElementById('prueba').style.display = 'none';
     if (user) {
       if (user) {
 
-        if(document.getElementById('containerLogin'))
+        if (document.getElementById('containerLogin'))
           document.getElementById('containerLogin').style.display = 'none';
 
-        if(document.getElementById('containerSingUp'))
+        if (document.getElementById('containerSingUp'))
           document.getElementById('containerSingUp').style.display = 'none';
-        
+
         // ✅ Usuario autenticado en Firebase
         if (esSmartphone) optionsMovile();
         else optionsPC();
@@ -21,7 +27,7 @@ function init() {
 
         document.getElementById('myCanvas').style.display = 'block';
         document.querySelector('body').appendChild(gameControl());
-        
+
         return textoEnlace();
       }
     } else {
@@ -69,13 +75,13 @@ function showlogin() {
       return alertFullScrean('⚠️ Password is empty !!!', 'rgb(192, 134, 47, 1)', play('assets/images/back.png'));
 
     loginUser({
-        email: document.getElementById('email').value,
-        password: document.getElementById('password').value
-      })
-      .then(function(user) {
+      email: document.getElementById('email').value,
+      password: document.getElementById('password').value
+    })
+      .then(function (user) {
         console.log(user);
       })
-      .catch(function(error){
+      .catch(function (error) {
         alertFullScrean(`💀 ${error.code} !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
       });
   });
@@ -86,7 +92,7 @@ function showlogin() {
   singUp.textContent = 'SingUp';
   singUp.id = 'bSingUp';
 
-  singUp.addEventListener('click', function() {
+  singUp.addEventListener('click', function () {
 
     document.getElementById('containerLogin').style.display = 'none';
     document.querySelector('body').appendChild(showCreateUser());
@@ -106,7 +112,7 @@ function showlogin() {
   return containerLogin;
 }
 
-function showCreateUser() { 
+function showCreateUser() {
   let tittleSingUp = document.createElement('h3');
   tittleSingUp.innerText = 'SingUp';
 
@@ -140,30 +146,30 @@ function showCreateUser() {
   singUp.textContent = 'SingUp';
   singUp.id = 'bSingUp';
 
-  singUp.addEventListener('click', function() {
+  singUp.addEventListener('click', function () {
 
     let emailSingUp = document.getElementById('emailSingUp').value;
     let pass1 = document.getElementById('password1').value;
     let pass2 = document.getElementById('password2').value;
 
-    if (emailSingUp == ''){
+    if (emailSingUp == '') {
       return alert('Sin Correo');
-    } else if(pass1 != pass2) {
+    } else if (pass1 != pass2) {
       return alert('Contraseñas diferentes');
     } else {
       createUser({
         email: document.getElementById('emailSingUp').value,
         password: document.getElementById('password1').value
       })
-      .then(function(user) {
-        console.log(user);
-      })
-      .catch(function(error){
-        debugger;
-        alertFullScrean(`💀 ${error.code} !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
-      });
+        .then(function (user) {
+          console.log(user);
+        })
+        .catch(function (error) {
+          debugger;
+          alertFullScrean(`💀 ${error.code} !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
+        });
     }
-  }); 
+  });
 
   let containerSingUp = document.createElement('div');
 
@@ -179,7 +185,7 @@ function showCreateUser() {
   return containerSingUp;
 }
 
-function gameControl () {
+function gameControl() {
 
   let buttonPlay = document.createElement('img');
 
@@ -188,7 +194,7 @@ function gameControl () {
   buttonPlay.alt = 'Play';
   buttonPlay.src = 'assets/images/play.png';
 
-  buttonPlay.addEventListener('click', function(){
+  buttonPlay.addEventListener('click', function () {
     start();
   });
 
@@ -199,7 +205,7 @@ function gameControl () {
   buttonPause.alt = 'Pause';
   buttonPause.src = 'assets/images/pause.png';
 
-  buttonPause.addEventListener('click', function(){
+  buttonPause.addEventListener('click', function () {
     stop();
   });
 
@@ -210,9 +216,25 @@ function gameControl () {
   buttonLogOut.alt = 'LogOut';
   buttonLogOut.src = 'assets/images/off.png';
 
-  buttonLogOut.addEventListener('click', function() {
-    document.getElementById('containerLogin').style.display = 'none';
-    document.getElementById('myCanvas').style.display = 'none';
+  buttonLogOut.addEventListener('click', function () {
+    if (document.getElementById('containerLogin'))
+      document.getElementById('containerLogin').style.display = 'none';
+
+    if (document.getElementById('containerSingUp'))
+      document.getElementById('containerSingUp').style.display = 'none';
+
+    if (document.getElementById('myCanvas'))
+      document.getElementById('myCanvas').style.display = 'none';
+
+    if (document.getElementById('containerControl'))
+      document.getElementById('containerControl').style.display = 'none';
+
+    if (document.getElementById('controlers-container'))
+      document.getElementById('controlers-container').style.display = 'none';
+
+    if (document.getElementById('enlace'))
+      document.getElementById('enlace').style.display = 'none';
+
     logoutUser();
     restart();
   })
@@ -220,6 +242,7 @@ function gameControl () {
   let containerControl = document.createElement('div');
 
   containerControl.classList = 'containerControl';
+  containerControl.id = 'containerControl';
 
   containerControl.appendChild(buttonPlay);
   containerControl.appendChild(buttonPause);
