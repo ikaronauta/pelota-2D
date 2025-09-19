@@ -117,7 +117,7 @@ body {
 }
 
 .containerLogin {
-    /* background-color: red; */
+    background-color: rgb(255, 251, 251, 0.15);
     color: #ffc6fe;
     font-family: 'arcade1';
     border: 5px #ffc6fe solid;
@@ -211,13 +211,14 @@ body {
     cursor: pointer;
 }
 
-.prueba {
-    color: wheat;
+.loading {
+    color: #F2BB5B;
     position: absolute;
     top: 10%;
     margin: 0 auto;
-    font-size: 3rem;
+    font-size: 5rem;
     font-family: arcade1;
+    text-shadow: 5px 5px 5px red;
 }
 
 /* Hover solo en dispositivos con mouse */

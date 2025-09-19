@@ -1,14 +1,8 @@
 const mounthDay = `${new Date().getMonth()}${new Date().getDate()}`;
 
 function init() {
-  let prueba = document.createElement('div');
-  prueba.innerText = 'Cargando....';
-  prueba.classList = 'prueba';
-  prueba.id = 'prueba';
-  document.querySelector('body').appendChild(prueba);
-
   auth.onAuthStateChanged((user) => {
-    document.getElementById('prueba').style.display = 'none';
+    document.getElementById('loading').style.display = 'none';
     if (user) {
       if (user.emailVerified) {
 

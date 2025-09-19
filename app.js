@@ -32,12 +32,19 @@ const messages = [
   "Push forward! ⬆️"
 ];
 
+let loading = document.createElement('div');
+loading.innerText = '⏳ Loading....';
+loading.classList = 'loading';
+loading.id = 'loading';
+document.querySelector('body').appendChild(loading);
+
 var backgroundImage = new Image();
 backgroundImage.src = objBackgroundStages.hasOwnProperty(data.stage) ? 
                       objBackgroundStages[data.stage] :
                       objBackgroundStages[0];
 
 backgroundImage.onload = function () {  
+  
   if(stagesRules.hasOwnProperty(data.stage)){
     stagesRules[data.stage].forEach(function(rule){
       eval(rule);
