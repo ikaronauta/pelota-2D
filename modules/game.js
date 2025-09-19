@@ -42,7 +42,7 @@ function collisionDetection() {
             clearInterval(mainTimeOut);
             alertFullScrean('You Win', 'rgb(72, 159, 170)', play('assets/images/play.svg'));
             data.stage++;
-            //localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
+            localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
           }
         }
       }
@@ -128,7 +128,7 @@ function draw() {
         alertFullScrean(`💀 Game Over !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
         data.stage = 1;
         data.score = 0;
-        //localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
+        localStorage.setItem(`pelota2D-${mounthDay}`, JSON.stringify(data));
       } else {
 
         stop();

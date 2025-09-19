@@ -1,4 +1,4 @@
-const mounthDay = `${new Date().getMonth()}${new Date().getDate()}`;
+const mounthDay = `${new Date().getMonth() + 1}${new Date().getDate()}`;
 
 function init() {
   auth.onAuthStateChanged((user) => {
