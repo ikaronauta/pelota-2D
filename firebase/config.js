@@ -16,10 +16,24 @@ const auth = firebase.auth();
 function createUser(objDataUser) {
   alertFullScrean(`⏳ Loading game. Please wait !!!`, 'silver', null);
 
+  // if (document.getElementById('containerLogin'))
+  //   document.getElementById('containerLogin').style.display = 'none';
+
+  if (document.getElementById('containerSingUp'))
+    document.getElementById('containerSingUp').style.display = 'none';
+
   return auth.createUserWithEmailAndPassword(objDataUser.email, objDataUser.password)
     .then((userCredential) => {
       const user = userCredential.user;
-      console.log("Sesión iniciada con:", user.email);
+
+      // 📧 Enviar verificación
+      user.sendEmailVerification()
+        .then(() => {
+          //alertFullScrean(`📨 Verification email sent to ${user.email}`, '#2196F3', play('assets/images/play.svg'));
+          logoutUser();
+        });
+
+      console.log("Usuario creado:", user.email);
       document.getElementById('alertFullScrean').remove();
       return user;
     })

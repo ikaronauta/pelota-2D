@@ -10,7 +10,7 @@ function init() {
   auth.onAuthStateChanged((user) => {
     document.getElementById('prueba').style.display = 'none';
     if (user) {
-      if (user) {
+      if (user.emailVerified) {
 
         if (document.getElementById('containerLogin'))
           document.getElementById('containerLogin').style.display = 'none';
@@ -29,6 +29,9 @@ function init() {
         document.querySelector('body').appendChild(gameControl());
 
         return textoEnlace();
+      } else {
+        alertFullScrean(`📨 Verification email sent to ${user.email}`, '#2196F3', play('assets/images/play.svg'));
+        logoutUser();
       }
     } else {
       // Usuario no logueado o se cerró la sesión
@@ -165,7 +168,6 @@ function showCreateUser() {
           console.log(user);
         })
         .catch(function (error) {
-          debugger;
           alertFullScrean(`💀 ${error.code} !!!`, 'rgb(170, 72, 72)', play('assets/images/play.svg'));
         });
     }
