@@ -95,6 +95,16 @@ function showlogin() {
     document.querySelector('body').appendChild(showCreateUser());
   });
 
+  let resetPass = document.createElement('p');
+
+  resetPass.classList = 'resetPass';
+  resetPass.id = 'resetPass';
+  resetPass.innerHTML = 'Forgote my password'
+
+  resetPass.addEventListener('click', function() {
+    resetPassword(document.getElementById('email').value);
+  });
+
   let containerLogin = document.createElement('div');
 
   containerLogin.classList = 'containerLogin';
@@ -105,6 +115,7 @@ function showlogin() {
   containerLogin.appendChild(inputPassword);
   containerLogin.appendChild(start);
   containerLogin.appendChild(singUp);
+  containerLogin.appendChild(resetPass);
 
   return containerLogin;
 }

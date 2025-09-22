@@ -90,7 +90,7 @@ body {
     opacity: 1;
 }
 
-.play-game {
+.play-game, .close {
     width: 5rem;
     height: auto;
     margin-top: 1rem;
@@ -221,11 +221,22 @@ body {
     text-shadow: 5px 5px 5px red;
 }
 
+.resetPass {
+    font-size: 0.9rem;
+    cursor: pointer;
+}
+
+
 /* Hover solo en dispositivos con mouse */
 @media (hover: hover) and (pointer: fine) {
-  .containerControl:hover {
-    background-color: #7e98c4;
-  }
+    .containerControl:hover {
+        background-color: #7e98c4;
+    }
+
+    .resetPass:hover {
+        color: white;
+        text-shadow: 2px 2px 2px #f10775;
+    }
 }
 
 @media (max-width: 500px) {
@@ -239,5 +250,14 @@ body {
 
     .containerControl:active {
         background-color: #7e98c4;
+    }
+
+    .resetPass:active {
+        color: white;
+        text-shadow: 2px 2px 2px #f10775;
+    }
+
+    .loading {
+        font-size: 3rem;
     }
 }

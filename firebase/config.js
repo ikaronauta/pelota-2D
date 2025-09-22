@@ -62,8 +62,37 @@ function loginUser(objDataUser) {
     });
 }
 
-
 // Cerrar sesión
 function logoutUser() {
   auth.signOut();
+}
+
+function resetPassword(email) {
+  let close = document.createElement('img');
+
+  close.classList = 'close';
+  close.id = 'close';
+  close.alt = 'Close';
+  close.src = 'assets/images/close.png';
+
+  close.addEventListener('click', function() {
+    document.getElementById('alertFullScrean').remove();
+  });
+
+  if (email == '') 
+    return alertFullScrean(`⚠️ Please enter your email address`, 'orange', close);
+
+  alertFullScrean(`⏳ Sending password reset email...`, 'silver', null);
+
+  return auth.sendPasswordResetEmail(email)
+    .then(() => {
+      document.getElementById('alertFullScrean').remove();
+      alertFullScrean(`📩 Password reset email sent to ${email}`, '#2196F3', close);
+      console.log("Correo de restablecimiento enviado a:", email);
+    })
+    .catch((error) => {
+      document.getElementById('alertFullScrean').remove();
+      console.error("❌ Error:", error.code, error.message);
+      alertFullScrean(`❌ Error: ${error.message}`, 'red', close);
+    });
 }
