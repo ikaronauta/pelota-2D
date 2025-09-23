@@ -184,9 +184,9 @@ function showCreateUser() {
   back.textContent = 'Back';
   back.id = 'bBack';
 
-  back.addEventListener('click', function() {
-      document.getElementById('containerLogin').style.display = '';
-      document.getElementById('containerSingUp').style.display = 'none';
+  back.addEventListener('click', function () {
+    document.getElementById('containerLogin').style.display = '';
+    document.getElementById('containerSingUp').remove();
   });
 
   let containerSingUp = document.createElement('div');
