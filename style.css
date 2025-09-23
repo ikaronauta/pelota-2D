@@ -143,7 +143,7 @@ body {
     color: #ffc6fe;
 }
 
-.butonLogin {
+.butonLogin, .butonBack {
     border-radius: 5px;
     background-color: #7e98c4;
     border: 1px #7e98c4 solid;
@@ -157,7 +157,7 @@ body {
     font-size: 2rem;
 }
 
-.butonLogin:hover {
+.butonLogin:hover, .butonBack:hover {
     background-color: #ffc6fe;
     color: #7e98c4;
 }

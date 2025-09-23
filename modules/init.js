@@ -178,6 +178,17 @@ function showCreateUser() {
     }
   });
 
+  let back = document.createElement('button');
+
+  back.classList = 'butonBack';
+  back.textContent = 'Back';
+  back.id = 'bBack';
+
+  back.addEventListener('click', function() {
+      document.getElementById('containerLogin').style.display = '';
+      document.getElementById('containerSingUp').style.display = 'none';
+  });
+
   let containerSingUp = document.createElement('div');
 
   containerSingUp.classList = 'containerSingUp';
@@ -188,6 +199,7 @@ function showCreateUser() {
   containerSingUp.appendChild(inputPassword1);
   containerSingUp.appendChild(inputPassword2);
   containerSingUp.appendChild(singUp);
+  containerSingUp.appendChild(back);
 
   return containerSingUp;
 }
